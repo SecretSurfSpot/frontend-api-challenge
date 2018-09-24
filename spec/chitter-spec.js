@@ -1,0 +1,2 @@
+describe("Chitter", function() {
+})
