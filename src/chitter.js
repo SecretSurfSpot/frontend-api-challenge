@@ -5,23 +5,23 @@
 
   this.chitter = new Chitter()
 
-  Chitter.prototype.getLast50Peeps = function() {
+  Chitter.prototype.getPeeps = function() {
     fetch('https://chitter-backend-api.herokuapp.com/peeps')
     .then(response => response.json())
     .then(data => {
     this.data = data
-    console.log(data.length)
+    //console.log(data.length)
     chitter.buildOutput(data)
     })
   }
 
   Chitter.prototype.buildOutput = function(data) {
-    var last50Peeps = "<ul>"
+    var peeps = "<ul>"
     data.forEach(function(peep) {
-      last50Peeps += `<li><div>On ${peep.updated_at.substr(0, 10)}, ${peep.user.handle} posted: ${peep.body}</div></li>`
+      peeps += `<li><div>On ${peep.updated_at.substr(0, 10)}, ${peep.user.handle} posted: ${peep.body}</div></li>`
     })
-    last50Peeps += "</ul>"
-    chitter.updateBrowser(last50Peeps)
+    peeps += "</ul>"
+    chitter.updateBrowser(peeps)
   }
 
   Chitter.prototype.updateBrowser = function(data) {
@@ -50,4 +50,4 @@
 })(this)
 
 //chitter.addUser("SomeHandle6", "Password")
-chitter.getLast50Peeps()
+chitter.getPeeps()
